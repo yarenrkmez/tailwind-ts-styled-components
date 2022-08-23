@@ -19,6 +19,10 @@ const searchProduct = ({ products }: Props) => {
             <Body>
                 {products?.data && <Products
                     products={products.data}
+                    pagination={{
+                        pageSize: 8,
+                        totalCount: products.data?.length!
+                    }}
                 />}
             </Body>
 

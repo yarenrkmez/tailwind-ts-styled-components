@@ -37,7 +37,7 @@ const Product = ({ product }: Props) => {
                     <Text className="withoutDiscountPrice">
                         {product.price}
                     </Text>
-                    <Text className="discountRate">{product.discount_percentage}</Text>
+                    <Text className="discountRate">{product.discount_percentage}% </Text>
                 </Row>
 
             </Column>
