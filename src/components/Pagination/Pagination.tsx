@@ -2,8 +2,6 @@ import React from 'react';
 import { usePagination, DOTS } from '../../hooks/usePagination';
 import tw, { styled, TwStyle } from 'twin.macro';
 
-/** Icons */
-// import { LeftArrow } from '../svg/components';
 type Props = {
     onPageChange: (val: number | string) => void,
     totalCount: number,

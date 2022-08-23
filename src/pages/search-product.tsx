@@ -1,5 +1,7 @@
 
+import Header from '@/components/SearchProduct/Header';
 import Products from '@/components/SearchProduct/Products';
+import SideBar from '@/components/SearchProduct/SideBar';
 import { Product as ProductType } from '@/type';
 import { GetServerSideProps } from 'next';
 import React from 'react'
@@ -16,7 +18,9 @@ const searchProduct = ({ products }: Props) => {
 
     return (
         <Container>
-            <Body>
+            <Header />
+            <Body tw="flex flex-row">
+                <SideBar />
                 {products?.data && <Products
                     products={products.data}
                     pagination={{
@@ -32,7 +36,7 @@ const searchProduct = ({ products }: Props) => {
     )
 }
 const Container = tw.div`flex flex-col justify-between`;
-const Body = tw.div` flex m-5 flex-wrap gap-2.5 column-gap[.8125rem]`;
+const Body = tw.div` flex m-5 flex-nowrap gap-2.5 column-gap[.8125rem]`;
 
 export default searchProduct
 

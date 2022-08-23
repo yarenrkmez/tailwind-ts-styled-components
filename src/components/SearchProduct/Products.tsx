@@ -56,7 +56,7 @@ const Products = ({ products, pagination }: Props) => {
         </Container>
     )
 }
-const Container = tw.div`flex flex-col justify-between`;
+const Container = tw.div`flex flex-col justify-center items-center mt-9`;
 const Body = tw.div` flex m-5 flex-wrap gap-2.5 column-gap[.8125rem]`;
 
 export default Products
