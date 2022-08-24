@@ -30,16 +30,16 @@ const Product = ({ product }: Props) => {
 
             <Column tw="p-2.5">
                 <Text className="price">
-                    90,85 TL
+                    {product?.discounted_price} TL
                 </Text>
 
-                <Row>
+                {product?.discount_percentage && <Row>
                     <Text className="withoutDiscountPrice">
-                        {product.price}
+                        {product.price} TL
                     </Text>
                     <Text className="discountRate">{product.discount_percentage}% </Text>
                 </Row>
-
+                }
             </Column>
 
         </Container>

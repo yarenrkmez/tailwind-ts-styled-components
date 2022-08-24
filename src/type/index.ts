@@ -5,5 +5,6 @@ export type Product = {
     disabled: boolean,
     price: number,
     discount_percentage: number,
-    brand: string
+    brand: string,
+    discounted_price?: number
 }
