@@ -1,37 +1,42 @@
 import { TableItem } from '@/type';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import tw from 'twin.macro';
+import Pagination from '../Pagination/Pagination';
+import Router from 'next/router';
+
+type Pagination = {
+    totalCount: number;
+    pageSizes: Array<{ label: any, value: any, isDefault?: boolean }>
+}
 
 type Props = {
     headers: Array<string>;
     data: Array<TableItem>;
+    pagination: Pagination;
+
 }
 
-const Table = ({ headers, data }: Props) => {
+const Table = ({ headers, data, pagination }: Props) => {
+    const { totalCount, pageSizes } = pagination;
+
+    const [currentPage, setCurrentPage] = useState(1);
+    // const [pageSize, setPageSize] = useState(0);
+
+    const defaultPageSize = pageSizes.find(item => item?.isDefault)?.value;
+
+
+    useEffect(() => {
+
+        Router.push({
+            pathname: '/table',
+            query: { page: currentPage },
+        })
+
+    }, [currentPage]);
 
     const getDataHeaderList = () => {
         return Object.keys(data?.[0] || {});
     };
-    // const calculate = () => {
-    //     let added2 = currentPage !== 1 ? 1 : 0;
-    //     let added1 = currentPage !== 1 && currentPage !== 2 ? 1 : 0;
-
-    //     return {
-    //         first: isServerSide() ? 0 : ((currentPage - 1) * pageSize) + added1,
-    //         second: isServerSide() ? defaultPageSize : (currentPage * pageSize) + added2
-    //     }
-
-    // }
-
-    // const rowHeader = () => {
-    //     return (
-    //         <tr>
-    //             {getDataHeaderList()?.map((item, index) =>
-    //                 <th><div className={classnames({ "resizable": resizableIndex?.includes(index) })}>{item}</div></th>
-    //             )}
-    //         </tr>
-    //     )
-    // };
 
     const rowHeader = () => {
         return (
@@ -66,13 +71,24 @@ const Table = ({ headers, data }: Props) => {
     }
 
     return (
-        <table tw="border-collapse border border-blue-400">
-            {rowHeader()}
-            {rowBody()}
-        </table>
+        <Container>
+            <table tw="border-collapse border border-blue-400">
+                {rowHeader()}
+                {rowBody()}
+            </table>
+            <Pagination
+                currentPage={currentPage}
+                totalCount={totalCount}
+                pageSize={defaultPageSize}
+                onPageChange={page => setCurrentPage(page as number)}
+            />
+        </Container>
+
     )
 }
 
 const Th = tw.th`border border-blue-300`;
 const Td = tw.td`border border-blue-300`;
+const Container = tw.div`flex flex-col`;
+
 export default Table

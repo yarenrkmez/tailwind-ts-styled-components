@@ -47,7 +47,6 @@ const Products = ({ products, pagination }: Props) => {
                 )}
             </Body>
             {totalCount > 9 && <Pagination
-                className="pagination-bar"
                 currentPage={currentPage}
                 totalCount={totalCount}
                 pageSize={pageSize}

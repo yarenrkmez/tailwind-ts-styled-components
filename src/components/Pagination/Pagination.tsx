@@ -7,8 +7,7 @@ type Props = {
     totalCount: number,
     siblingCount?: number,
     currentPage: number,
-    pageSize: number,
-    className: string
+    pageSize: number
 }
 
 const Pagination = (props: Props) => {
@@ -54,7 +53,7 @@ const Pagination = (props: Props) => {
             {paginationRange!.map(pageNumber => {
 
                 if (pageNumber === DOTS) {
-                    return <li className="pagination-item dots">{'. . .'}</li>;
+                    return <li>{'. . .'}</li>;
                 }
 
                 return (

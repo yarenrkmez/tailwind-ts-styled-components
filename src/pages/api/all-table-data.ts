@@ -3,7 +3,7 @@ import tableData from '../../assets/json/tableData.json';
 
 const getTableData = async (req: NextApiRequest, res: NextApiResponse<any>) => {
     const currentPage: number = Number(req.query.page) || 1;
-    const perPage = Number(req.query.pageSize) || 25;
+    const perPage = Number(req.query.page_size) || 25;
 
     try {
         const tempData = [...tableData];
@@ -38,7 +38,8 @@ const getTableData = async (req: NextApiRequest, res: NextApiResponse<any>) => {
                 data: tempData.slice(calculate().first, calculate().second),
                 headers: headers,
                 current_page: currentPage,
-                total_page: Math.ceil(tempData.length / perPage)
+                total_page: Math.ceil(tempData.length / perPage),
+                tatal_data_len:tempData.length
             })
         );
     } catch (error) {
