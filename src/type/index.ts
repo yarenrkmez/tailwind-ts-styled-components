@@ -8,3 +8,16 @@ export type Product = {
     brand: string,
     discounted_price?: number
 }
+
+export type TableItem = {
+    id: string,
+    first_name: string,
+    last_name: string,
+    email: string,
+    user_name: string,
+    create_date: string,
+    update_date: string,
+    status: string,
+    role: string,
+    user_id: string
+}
